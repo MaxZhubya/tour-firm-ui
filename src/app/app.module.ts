@@ -11,6 +11,8 @@ import { LiveBuildingViewComponent } from './view-components/live-building-view/
 import { AreaResortViewComponent } from './view-components/area-resort-view/area-resort-view.component';
 import { CityResortViewComponent } from './view-components/city-resort-view/city-resort-view.component';
 import { CountryViewComponent } from './view-components/country-view/country-view.component';
+import { EntranceTypeViewComponent } from './view-components/types-view/entrance-type-view/entrance-type-view.component';
+import { TravelingTypeViewComponent } from './view-components/types-view/traveling-type-view/traveling-type-view.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CountryViewComponent } from './view-components/country-view/country-vie
     LiveBuildingViewComponent,
     AreaResortViewComponent,
     CityResortViewComponent,
-    CountryViewComponent
+    CountryViewComponent,
+    EntranceTypeViewComponent,
+    TravelingTypeViewComponent
   ],
   imports: [
     BrowserModule

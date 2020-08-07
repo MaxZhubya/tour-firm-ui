@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+export const API_URL: string = '/api';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +9,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TourFirmUi';
-
-  // Comment for commit
-  // Another commit
 }
