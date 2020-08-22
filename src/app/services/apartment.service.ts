@@ -11,7 +11,7 @@ export class ApartmentService {
   constructor(private http: HttpClient) {
   }
 
-  public loadAllApartments() {
+  public loadAll() {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export class ApartmentService {
     return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
   }
 
-  public loadApartmentById(id: number) {
+  public loadById(id: number) {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'

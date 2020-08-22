@@ -1,0 +1,12 @@
+<div class="result-view">
+  <span><h1>Results found: {{liveBuildingList.length}}</h1></span>
+  <div class="content" fxLayout="row">
+    <div class="point-sorting"></div>
+
+    <ng-container *ngFor="let liveBuilding of liveBuildingList">
+      <app-card-form-view [liveBuilding] = "liveBuilding">
+      </app-card-form-view>
+    </ng-container>
+
+  </div>
+</div>

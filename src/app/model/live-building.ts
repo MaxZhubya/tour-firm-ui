@@ -13,6 +13,7 @@ export class LiveBuilding {
   public type: BuildingEnum;
   public number: string;
   public address: string;
+  public name: string;
   public availableApartmentCount: number;
   public ifPoolExist: boolean;
   public ifParkingExist: boolean;
@@ -25,6 +26,7 @@ export class LiveBuilding {
     this.type = null;
     this.number = '';
     this.address = '';
+    this.name = '';
     this.availableApartmentCount = null;
     this.ifPoolExist = null;
     this.ifParkingExist = null;
@@ -41,6 +43,7 @@ export class LiveBuilding {
     currentLiveBuilding.type = liveBuilding.type;
     currentLiveBuilding.number = liveBuilding.number;
     currentLiveBuilding.address = liveBuilding.address;
+    currentLiveBuilding.name = liveBuilding.name;
     currentLiveBuilding.availableApartmentCount = liveBuilding.availableApartmentCount;
     currentLiveBuilding.ifPoolExist = liveBuilding.ifPoolExist;
     currentLiveBuilding.ifParkingExist = liveBuilding.ifParkingExist;

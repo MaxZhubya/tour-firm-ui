@@ -10,6 +10,7 @@ export class LiveBuildingEdit {
   public type: string;
   public number: string;
   public address: string;
+  public name: string;
   public availableApartmentCount: number;
   public ifPoolExist: boolean;
   public ifParkingExist: boolean;
@@ -22,6 +23,7 @@ export class LiveBuildingEdit {
     this.type = '';
     this.number = '';
     this.address = '';
+    this.name = '';
     this.availableApartmentCount = null;
     this.ifPoolExist = null;
     this.ifParkingExist = null;
@@ -40,6 +42,7 @@ export class LiveBuildingEdit {
     this.type = liveBuilding.type.toString();
     this.number = liveBuilding.number;
     this.address = liveBuilding.address;
+    this.name = liveBuilding.name;
     this.availableApartmentCount = liveBuilding.availableApartmentCount;
     this.ifPoolExist = liveBuilding.ifPoolExist;
     this.ifParkingExist = liveBuilding.ifParkingExist;

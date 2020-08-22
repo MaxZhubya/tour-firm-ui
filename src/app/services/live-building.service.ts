@@ -12,7 +12,7 @@ export class LiveBuildingService {
   constructor(private http: HttpClient) {
   }
 
-  public loadAllLiveBuildings() {
+  public loadAll() {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export class LiveBuildingService {
     return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
   }
 
-  public loadLiveBuildingById(id: number) {
+  public loadById(id: number) {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'

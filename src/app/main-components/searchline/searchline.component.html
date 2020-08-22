@@ -1,1 +1,48 @@
-<p>searchline works!</p>
+<div class="searchline" fxLayout="column" fxLayoutAlign="stretch">
+  <div class="content">
+    <div class="search-header">
+      <span>Find deals on hotels, private accommodation and more...</span>
+      <p>From hotel rooms to cozy villas with amazing scenery</p>
+    </div>
+    <div class="options" fxLayout="row" fxLayoutAlign="stretch">
+
+      <div class="place" fxLayout="row">
+        <input [(ngModel)]="countrySelected"  [ngModelOptions]="{standalone: true}"
+               [typeahead]="countries"
+               [adaptivePosition]="true"
+               placeholder="Country"
+               class="country form-control">
+
+        <p class="defis">&mdash;&mdash;</p>
+
+        <input [(ngModel)]="citySelected"  [ngModelOptions]="{standalone: true}"
+               [typeahead]="cities"
+               [adaptivePosition]="true"
+               placeholder="City"
+               class="city form-control">
+      </div>
+
+      <div class="date form-group">
+        <input type="text"
+               placeholder="Entry - Departure"
+               class="form-control"
+               bsDaterangepicker
+               [bsConfig]="{ adaptivePosition: true }"
+               [(ngModel)]="bsRangeValue"  [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="apartments">
+        <form fxLayout="row">
+          <p>Apartments: </p>
+          <input type="text" [(ngModel)]="apartmentCountSelected"  [ngModelOptions]="{standalone: true}"><br>
+        </form>
+      </div>
+
+      <div class="button">
+        <button type="button" class="btn btn-primary" (click)="buttonOnClick()">Find</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

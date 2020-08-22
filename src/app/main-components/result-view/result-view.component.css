@@ -1,0 +1,48 @@
+.result-view {
+  width: 1000px;
+  /*height: 600px;*/
+  height: auto;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 80px;
+
+  border-style: double;
+}
+
+
+.result-view h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+
+/******  Content  ******/
+.content {
+  width: 990px;
+  height: auto;
+  margin-top: 20px;
+
+}
+
+
+/******  PointSorting  ******/
+.point-sorting {
+  height: 530px;
+  width: 200px;
+  border-style: inset;
+
+  position: static;
+}
+
+
+/******  App-card-form-view  ******/
+/*app-card-form-view {*/
+/*  width: 760px;*/
+/*  height: auto;*/
+
+/*  margin-left: 30px;*/
+
+/*  display: block;*/
+/*}*/
