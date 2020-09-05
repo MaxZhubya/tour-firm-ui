@@ -32,9 +32,12 @@ import { ImageViewComponent } from './view-components/image-view/image-view.comp
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { CardFormViewComponent } from './main-components/card-form-view/card-form-view.component';
 import {RouterModule} from '@angular/router';
-import {DataService} from './services/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import {appRoutes} from './app.routes';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { DetailCardModalComponent } from './main-components/detail-card-modal/detail-card-modal.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -55,7 +58,8 @@ import {appRoutes} from './app.routes';
     FooterComponent,
     ResultViewComponent,
     ImageViewComponent,
-    CardFormViewComponent
+    CardFormViewComponent,
+    DetailCardModalComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +72,9 @@ import {appRoutes} from './app.routes';
     RatingModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    ModalModule.forRoot(),
+    CarouselModule.forRoot(),
+    MatTableModule,
 
   ],
   providers: [
@@ -78,7 +85,6 @@ import {appRoutes} from './app.routes';
     CountryService,
     EntranceTypeService,
     TravelingTypeService,
-    DataService
   ],
   bootstrap: [AppComponent]
 })

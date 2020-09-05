@@ -1,87 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../services/data.service';
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
+import {CountryService} from '../../services/country.service';
+import {ResortCityService} from '../../services/resort-city.service';
+import {LiveBuildingService} from '../../services/live-building.service';
+import {Subscription} from 'rxjs';
+import {Country} from '../../model/country';
 
 @Component({
   selector: 'app-searchline',
   templateUrl: './searchline.component.html',
   styleUrls: ['./searchline.component.css']
 })
-export class SearchlineComponent implements OnInit {
+export class SearchlineComponent implements OnInit, OnDestroy {
 
-  constructor(private dataService: DataService) { }
-
-  ngOnInit(): void {
+  constructor(private countryService: CountryService, private liveBuildingService: LiveBuildingService) {
+    this.countrySubscription = this.countryService.countryEmitter
+      .subscribe(value =>
+        this.countryService.countryList.forEach(country => this.countryNames.push(country.name))
+      );
   }
 
   bsRangeValue: Date [];
+  private countrySubscription: Subscription;
 
   countrySelected: string = '';
   citySelected: string = '';
 
-  countries: string[] = [
-    'Ukraine',
-    'USA',
-    'Germany',
-    'French',
-    'Canada'
-  ];
-  cities: string[] = [
-    'Alabama',
-    'Alaska',
-    'Arizona',
-    'Arkansas',
-    'California',
-    'Colorado',
-    'Connecticut',
-    'Delaware',
-    'Florida',
-    'Georgia',
-    'Hawaii',
-    'Idaho',
-    'Illinois',
-    'Indiana',
-    'Iowa',
-    'Kansas',
-    'Kentucky',
-    'Louisiana',
-    'Maine',
-    'Maryland',
-    'Massachusetts',
-    'Michigan',
-    'Minnesota',
-    'Mississippi',
-    'Missouri',
-    'Montana',
-    'Nebraska',
-    'Nevada',
-    'New Hampshire',
-    'New Jersey',
-    'New Mexico',
-    'New York',
-    'North Dakota',
-    'North Carolina',
-    'Ohio',
-    'Oklahoma',
-    'Oregon',
-    'Pennsylvania',
-    'Rhode Island',
-    'South Carolina',
-    'South Dakota',
-    'Tennessee',
-    'Texas',
-    'Utah',
-    'Vermont',
-    'Virginia',
-    'Washington',
-    'West Virginia',
-    'Wisconsin',
-    'Wyoming'
-  ];
+  countryNames: string [] = [];
+  cityNames: string [] = [];
 
   // dateSelected: string;
   apartmentCountSelected: number = 1;
 
   buttonOnClick() {
-    this.dataService.find();
+    this.liveBuildingService.find();
+  }
+
+  setCityNames() {
+    this.cityNames = [];
+    let countries: Country [] = this.countryService.countryList.filter(country => country.name === this.countrySelected);
+    // countries[0].cities.forEach(city => this.cityNames.push(city.name));
+    for (let country of countries) {
+      country.cities.forEach(city => this.cityNames.push(city.name));
+      console.log('Country list of cities: ' + country.cities)
+    }
+
+    return this.cityNames;
+  }
+
+  ngOnInit(): void {
+    this.setCityNames();
+  }
+
+  ngOnDestroy(): void {
+    if (this.countrySubscription) {
+      this.countrySubscription.unsubscribe();
+      this.countrySubscription = null;
+    }
   }
 }

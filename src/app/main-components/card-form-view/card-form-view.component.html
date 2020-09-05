@@ -4,7 +4,7 @@
     <mat-card-header class="mat-card-header" fxLayout="column">
       <div class="name-rating-number" fxLayout="column">
         <p class="name-rating-number-text">{{liveBuilding.name}}</p>
-        <img src="assets/images/Temp img.jpg">
+        <img [src]=firstPhoto>
         <div class="rating-and-number" fxLayout="row">
           <rating [(ngModel)]="rate" [max]="max" [readonly]="!isReadonly"></rating>
           <div class="rating-number">
@@ -16,13 +16,16 @@
 
     <mat-card-content class="mat-card-content" fxLayout="row">
       <div class="detail-data">
-        <p> Resort area: <b>{{liveBuilding.resortArea.name}}</b></p>
+
+<!--        Some troubles with it ._.                                   -->
+<!--        <p> Resort area: <b>{{liveBuilding.resortArea.name}}</b></p>-->
+
         <p> Address: <b>{{liveBuilding.address}}</b></p>
         <p> Distance to beach: <b>{{liveBuilding.distanceToBeach}} m.</b></p>
         <p *ngIf="liveBuilding.ifPoolExist !== false; else elsePoolBlock"> Pool: <b>exist</b></p>
         <p *ngIf="liveBuilding.ifParkingExist !== false; else elseParkingBlock"> Parking: <b>exist</b></p>
         <p> Type: <b>{{liveBuilding.type.toString()}}</b></p>
-        <p> Available apartments: <b>{{liveBuilding.availableApartmentCount}}</b></p>
+        <p> Available apartments: <b>{{liveBuilding.apartments.length}}</b></p>
       </div>
       <ng-template #elsePoolBlock><p>Pool: <b>doesn't exist</b></p></ng-template>
       <ng-template #elseParkingBlock><p>Parking: <b>doesn't exist</b></p></ng-template>
@@ -30,10 +33,8 @@
     <!--        </div>-->
 
     <mat-card-actions>
-      <div class="cost-and-button" fxLayout="row" *ngFor="let apartment of liveBuilding.apartments">
-        <p>{{apartment.price}} UAH</p>
-
-        <button type="button" class="btn btn-primary">
+      <div class="cost-and-button" fxLayout="row">
+        <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">
           Order
         </button>
       </div>

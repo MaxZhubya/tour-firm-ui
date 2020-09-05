@@ -1,15 +1,42 @@
-import {API_URL} from '../app.component';
+import {ReferenceService} from './reference.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CountryEdit} from '../model/edit/country-edit';
 import {LiveBuildingEdit} from '../model/edit/live-building-edit';
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {LiveBuilding} from '../model/live-building';
 
-const localUrl = API_URL + '/livebuilding';
+const localUrl = ReferenceService.API_URL + '/livebuilding';
 
 @Injectable()
 export class LiveBuildingService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
+  }
+
+  liveBuildingEmitter: EventEmitter<any> = new EventEmitter<any>();
+
+  liveBuildingList: LiveBuilding [] = [];
+  foundLiveBuildingList: LiveBuilding [] = [];
+
+  public find() {
+    this.loadAll()
+      .subscribe((data: []) => {
+        this.foundLiveBuildingList = data;
+        this.router.navigate(['./result-view']);
+        console.log(this.foundLiveBuildingList);
+      });
+  }
+
+  public loadBuildingsOnStartPage() {
+    this.loadAll()
+      .subscribe((data: []) => {
+        this.liveBuildingList = data;
+        console.log(this.liveBuildingList);
+
+        // event
+        this.liveBuildingEmitter.emit(true)
+      });
   }
 
   public loadAll() {

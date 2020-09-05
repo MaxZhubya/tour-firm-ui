@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {API_URL} from '../app.component';
+import {ReferenceService} from './reference.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApartmentEdit} from '../model/edit/apartment-edit';
 
-const localUrl = API_URL + '/apartment';
+const localUrl = ReferenceService.API_URL + '/apartment';
 
 @Injectable()
 export class ApartmentService {

@@ -10,6 +10,7 @@ export class LiveBuilding {
   public id: number;
   public resortArea: ResortArea;
   public apartments: Array<Apartment>;
+  public images: Array<string>;
   public type: BuildingEnum;
   public number: string;
   public address: string;
@@ -23,6 +24,7 @@ export class LiveBuilding {
     this.id = null;
     this.resortArea = null;
     this.apartments = new Array<Apartment>();
+    this.images = new Array<string>();
     this.type = null;
     this.number = '';
     this.address = '';
@@ -40,6 +42,7 @@ export class LiveBuilding {
     if (currentLiveBuilding.apartments !== undefined && currentLiveBuilding.apartments !== null)
       currentLiveBuilding.apartments.sort((b, a) => b.id - a.id);
 
+    currentLiveBuilding.images = liveBuilding.images;
     currentLiveBuilding.type = liveBuilding.type;
     currentLiveBuilding.number = liveBuilding.number;
     currentLiveBuilding.address = liveBuilding.address;

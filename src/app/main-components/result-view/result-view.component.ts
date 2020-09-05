@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CardFormViewComponent} from '../card-form-view/card-form-view.component';
 import {LiveBuilding} from '../../model/live-building';
-import {DataService} from '../../services/data.service';
-
+import {LiveBuildingService} from '../../services/live-building.service';
 
 @Component({
   selector: 'app-result-view',
@@ -11,15 +9,14 @@ import {DataService} from '../../services/data.service';
 })
 export class ResultViewComponent implements OnInit {
 
-  //  Inject DataService
-  constructor(private dataService: DataService) { }
+  // //  Inject DataService
+  constructor(private liveBuildingService: LiveBuildingService) { }
 
   liveBuildingList: LiveBuilding [] = [];
-  results: number = this.liveBuildingList.length;
 
   //  Беру массив с ДатаСервиса
   ngOnInit(): void {
-    this.liveBuildingList = this.dataService.liveBuildingList;
+    this.liveBuildingList = this.liveBuildingService.liveBuildingList;
   }
 
 

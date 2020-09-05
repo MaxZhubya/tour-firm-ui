@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {API_URL} from '../../app.component';
+
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CountryEdit} from '../../model/edit/country-edit';
 import {EntranceTypeEdit} from '../../model/edit/types-edit/entrance-type-edit';
+import {ReferenceService} from '../reference.service';
 
-const localUrl = API_URL + '/entrancetype';
+const localUrl = ReferenceService.API_URL + '/entrancetype';
 
 @Injectable()
 export class EntranceTypeService {

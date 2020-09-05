@@ -1,18 +1,33 @@
-import {API_URL} from '../app.component';
+import {ReferenceService} from './reference.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApartmentEdit} from '../model/edit/apartment-edit';
 import {CountryEdit} from '../model/edit/country-edit';
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Country} from '../model/country';
 
-const localUrl = API_URL + '/country';
+const localUrl = ReferenceService.API_URL + '/country';
 
 @Injectable()
 export class CountryService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {}
+
+  countryEmitter: EventEmitter<any> = new EventEmitter<any>();
+
+  countryList: Country [] = [];
+
+  public loadCountriesToSearchline() {
+    this.loadAll()
+      .subscribe((data: []) => {
+        this.countryList = data;
+        console.log(this.countryList);
+
+        this.countryEmitter.emit(true);
+      })
   }
 
-  public loadAllCountries() {
+  public loadAll() {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -21,7 +36,7 @@ export class CountryService {
     return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
   }
 
-  public loadCountryById(id: number) {
+  public loadById(id: number) {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'

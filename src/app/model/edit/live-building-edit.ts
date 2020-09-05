@@ -7,6 +7,7 @@ export class LiveBuildingEdit {
   public id: number;
   public resortAreaId: number;
   //  public apartmentIds: number [];
+  public images: string [];
   public type: string;
   public number: string;
   public address: string;
@@ -20,6 +21,7 @@ export class LiveBuildingEdit {
     this.id = null;
     this.resortAreaId = null;
     //  this.apartments = [];
+    this.images = [];
     this.type = '';
     this.number = '';
     this.address = '';
@@ -39,6 +41,7 @@ export class LiveBuildingEdit {
     // if (liveBuilding.apartments)
     //   liveBuilding.apartments.forEach(value => this.apartmentIds.push(value.id));
 
+    this.images = liveBuilding.images;
     this.type = liveBuilding.type.toString();
     this.number = liveBuilding.number;
     this.address = liveBuilding.address;

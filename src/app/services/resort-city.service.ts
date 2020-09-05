@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {API_URL} from '../app.component';
+import {ReferenceService} from './reference.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ResortAreaEdit} from '../model/edit/resort-area-edit';
 import {ResortCityEdit} from '../model/edit/resort-city-edit';
 
-const localUrl = API_URL + '/resortcity';
+const localUrl = ReferenceService.API_URL + '/resortcity';
 
 @Injectable()
 export class ResortCityService {
@@ -12,7 +12,7 @@ export class ResortCityService {
   constructor(private http: HttpClient) {
   }
 
-  public loadAllResortCities() {
+  public loadAll() {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export class ResortCityService {
     return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
   }
 
-  public loadResortCityById(id: number) {
+  public loadById(id: number) {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'

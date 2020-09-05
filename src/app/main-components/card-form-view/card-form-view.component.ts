@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {LiveBuildingService} from '../../services/live-building.service';
 import {LiveBuilding} from '../../model/live-building';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {DetailCardModalComponent} from '../detail-card-modal/detail-card-modal.component';
+
+const path: string = "assets/images/carousel/";
 
 @Component({
   selector: 'app-card-form-view',
@@ -9,17 +13,30 @@ import {LiveBuilding} from '../../model/live-building';
 })
 export class CardFormViewComponent implements OnInit {
 
-  constructor(private liveBuildingService: LiveBuildingService) { }
+  constructor(private modalService: BsModalService) { }
 
+  bsModalRef: BsModalRef;
   @Input() liveBuilding: LiveBuilding;
-
-  ngOnInit(): void {
-  }
 
   /*Rating*/
   max: number = 10;
   rate: number = 7;
   isReadonly: boolean = true;
 
+  firstPhoto: string;
+
+  ngOnInit(): void {
+    this.firstPhoto = path + this.liveBuilding.images[0];
+  }
+
+
+  openModalWithComponent() {
+    const initialState = {
+      liveBuilding: this.liveBuilding
+    };
+
+    this.bsModalRef = this.modalService.show(DetailCardModalComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Back';
+  }
 
 }

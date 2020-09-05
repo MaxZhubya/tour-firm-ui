@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-export const API_URL: string = 'http://localhost:8080/api';
+import {LiveBuildingService} from './services/live-building.service';
+import {CountryService} from './services/country.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,10 @@ export const API_URL: string = 'http://localhost:8080/api';
 export class AppComponent implements OnInit {
   title = 'TourFirmUi';
 
-  ngOnInit(): void {
+  constructor(private liveBuildingService: LiveBuildingService, private countryService: CountryService) {}
 
+  ngOnInit(): void {
+    this.countryService.loadCountriesToSearchline();
+    this.liveBuildingService.loadBuildingsOnStartPage();
   }
 }

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {API_URL} from '../../app.component';
+import {ReferenceService} from '../reference.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {EntranceTypeEdit} from '../../model/edit/types-edit/entrance-type-edit';
 // @ts-ignore
 import {TravelingTypeEdit} from "../../model/edit/types-edit/traveling-type-edit";
 
-const localUrl = API_URL + '/travelingtype';
+const localUrl = ReferenceService.API_URL + '/travelingtype';
 
 @Injectable()
 export class TravelingTypeService {
