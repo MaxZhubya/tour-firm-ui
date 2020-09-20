@@ -177,3 +177,7 @@ form {
   border-color: #ffa500;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0) inset, 0px 0px 8px rgba(0, 0, 0, 0);
 }
+
+.spinner {
+  margin-right: 4px;
+}

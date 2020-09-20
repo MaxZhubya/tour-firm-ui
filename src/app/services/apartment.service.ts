@@ -1,14 +1,32 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {ReferenceService} from './reference.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApartmentEdit} from '../model/edit/apartment-edit';
+import {Apartment} from '../model/apartment';
+import {Data} from '@angular/router';
 
 const localUrl = ReferenceService.API_URL + '/apartment';
+const localUrlForApartmentOrder = ReferenceService.API_URL + '/reservedapartment';
 
 @Injectable()
 export class ApartmentService {
 
+  apartmentOrderEmitter: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private http: HttpClient) {
+  }
+
+  public orderApartment(apartment: Apartment, dataArray: Data[]) {
+    this.order(apartment, dataArray)
+      .subscribe((data: any) => {
+          // event
+          this.apartmentOrderEmitter.emit(data);
+          console.log('Order Apartment success');
+        },
+        error => {
+          console.log('Order Apartment error');
+        }
+      );
   }
 
   public loadAll() {
@@ -51,5 +69,17 @@ export class ApartmentService {
     return this.http.delete(localUrl + '/delete/' + id);
   }
 
+  private order(apartment: Apartment, dataArray: Data[]) {
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    const body = JSON.stringify({
+      'id': null, 'apartmentId': apartment.id, 'dateIn': dataArray[0], 'dateOut': dataArray[1]
+    });
+
+    return this.http.post(localUrlForApartmentOrder + '/add', body, { headers: headers, responseType: 'json' });
+  }
 
 }

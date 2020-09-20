@@ -1,10 +1,15 @@
 <div class="searchline" fxLayout="column" fxLayoutAlign="stretch">
   <div class="content">
-    <div class="search-header">
-      <span>Find deals on hotels, private accommodation and more...</span>
-      <p>From hotel rooms to cozy villas with amazing scenery</p>
+    <div class="search-header" fxLayout="row" fxLayoutAlign="space-between">
+      <div>
+        <span>Find deals on hotels, private accommodation and more...</span>
+        <p>From hotel rooms to cozy villas with amazing scenery</p>
+      </div>
+      <div class="spinner">
+        <mat-spinner diameter=40 *ngIf="loading"></mat-spinner>
+      </div>
     </div>
-    <div class="options" fxLayout="row" fxLayoutAlign="stretch">
+    <div class="options" fxLayout="row" fxLayoutAlign="stretch" >
 
       <div class="place" fxLayout="row">
         <!--[(ngModel)]="countrySelected"-->
@@ -40,7 +45,7 @@
       </div>
 
       <div class="button">
-        <button type="button" class="btn btn-primary" (click)="buttonOnClick()">Find</button>
+        <button type="button" class="btn btn-primary" (click)="buttonOnClick()" [disabled]="checkEnteredValues() || loading">Find</button>
       </div>
 
     </div>

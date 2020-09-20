@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CountryEdit} from '../model/edit/country-edit';
 import {LiveBuildingEdit} from '../model/edit/live-building-edit';
 import {EventEmitter, Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import {Data, Router} from '@angular/router';
 import {LiveBuilding} from '../model/live-building';
 
 const localUrl = ReferenceService.API_URL + '/livebuilding';
@@ -15,17 +15,26 @@ export class LiveBuildingService {
   }
 
   liveBuildingEmitter: EventEmitter<any> = new EventEmitter<any>();
+  liveBuildingFindEmitter: EventEmitter<any> = new EventEmitter<any>();
+
+  isFiltered: boolean = false;
 
   liveBuildingList: LiveBuilding [] = [];
   foundLiveBuildingList: LiveBuilding [] = [];
+  dataArray: Data[] = [];
 
-  public find() {
-    this.loadAll()
-      .subscribe((data: []) => {
-        this.foundLiveBuildingList = data;
-        this.router.navigate(['./result-view']);
-        console.log(this.foundLiveBuildingList);
-      });
+  public find(country: String, city: String, dataArray: Data[]) {
+    this.filter(country, city, dataArray)
+      .subscribe(
+        (data: []) => {
+          this.foundLiveBuildingList = data;
+          this.dataArray = dataArray;
+          this.router.navigate(['./result-view']);
+          this.liveBuildingFindEmitter.emit(true);
+          console.log(this.foundLiveBuildingList);
+        },
+        error => {},
+        () => this.isFiltered = true);
   }
 
   public loadBuildingsOnStartPage() {
@@ -55,6 +64,19 @@ export class LiveBuildingService {
     });
 
     return this.http.get(localUrl + '/list/' + id, { headers: headers, responseType: 'json' });
+  }
+
+  public filter(country: String, city: String, dataArray: Data[]) {
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+
+    const body = JSON.stringify({
+      'country': country, 'city': city, 'dateIn': dataArray[0], 'dateOut': dataArray[1]
+    });
+
+    return this.http.post(localUrl + '/filter', body, { headers: headers, responseType: 'json' });
   }
 
   public create(liveBuildingEdit: LiveBuildingEdit) {

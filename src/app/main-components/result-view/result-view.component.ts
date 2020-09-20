@@ -9,14 +9,24 @@ import {LiveBuildingService} from '../../services/live-building.service';
 })
 export class ResultViewComponent implements OnInit {
 
-  // //  Inject DataService
-  constructor(private liveBuildingService: LiveBuildingService) { }
-
   liveBuildingList: LiveBuilding [] = [];
+  isFiltered: boolean = false;
+
+  // Inject DataService
+  constructor(private liveBuildingService: LiveBuildingService) {
+
+    this.liveBuildingService.liveBuildingFindEmitter
+      .subscribe( (data: any) => {
+        this.liveBuildingList = this.liveBuildingService.foundLiveBuildingList;
+        this.isFiltered = this.liveBuildingService.isFiltered;
+      });
+
+  }
 
   //  Беру массив с ДатаСервиса
   ngOnInit(): void {
-    this.liveBuildingList = this.liveBuildingService.liveBuildingList;
+    this.liveBuildingList = this.liveBuildingService.foundLiveBuildingList;
+    this.isFiltered = this.liveBuildingService.isFiltered;
   }
 
 

@@ -38,7 +38,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { DetailCardModalComponent } from './main-components/detail-card-modal/detail-card-modal.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import {MatTableModule} from '@angular/material/table';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -75,7 +75,7 @@ import {MatTableModule} from '@angular/material/table';
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
     MatTableModule,
-
+    MatProgressSpinnerModule
   ],
   providers: [
     ApartmentService,

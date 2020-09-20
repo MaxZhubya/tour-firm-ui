@@ -9,6 +9,7 @@ export class Apartment {
   public amountOfBeds: number;
   public amountOfRooms: number;
   public ifBathroomExist: boolean;
+  public isOrdered: boolean;
 
   constructor() {
     this.id = null;
@@ -18,6 +19,7 @@ export class Apartment {
     this.amountOfBeds = null;
     this.amountOfRooms = null;
     this.ifBathroomExist = null;
+    this.isOrdered = false;
   }
 
   public static update(currentApartment: Apartment, apartment: Apartment) {

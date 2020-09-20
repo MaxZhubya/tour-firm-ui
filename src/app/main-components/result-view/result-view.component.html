@@ -8,7 +8,7 @@
   </div>
 
   <ng-template #elseBlock>
-    <div class="else-template" fxLayout="row">
+    <div class="else-template" fxLayout="row" *ngIf="isFiltered">
       <h1>Unfortunately, we don't have any offers for you</h1>
       <img src="assets/images/Sad smile.jpg" alt="temp">
     </div>

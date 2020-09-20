@@ -12,21 +12,23 @@ export class BuildingTypeSearchComponent implements OnInit, OnDestroy {
 
   private liveBuildingSubscription: Subscription;
 
-  constructor(private liveBuildingService: LiveBuildingService) {
-    // subscribe
-    this.liveBuildingSubscription = this.liveBuildingService.liveBuildingEmitter
-      .subscribe(value =>
-        this.liveBuildingService.liveBuildingList.forEach(liveBuilding => this.liveBuildingList.push(liveBuilding))
-      );
-
-    this.countBuildings();
-  }
-
   liveBuildingList: LiveBuilding [] = [];
 
   hotels: number = 0;
   cottages: number = 0;
   villas: number = 0;
+
+  constructor(private liveBuildingService: LiveBuildingService) {
+
+    // subscribe
+    this.liveBuildingSubscription = this.liveBuildingService.liveBuildingEmitter
+      .subscribe(value => {
+        this.liveBuildingList = [];
+        this.liveBuildingService.liveBuildingList.forEach(liveBuilding => this.liveBuildingList.push(liveBuilding));
+        this.countBuildings();
+      });
+
+  }
 
   countBuildings() {
     // console.log('LiveBuildingList length: ' + this.liveBuildingList.length);
@@ -38,7 +40,6 @@ export class BuildingTypeSearchComponent implements OnInit, OnDestroy {
       } else {
         this.villas++;
       }
-
     }
   }
 

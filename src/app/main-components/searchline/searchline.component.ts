@@ -12,27 +12,39 @@ import {Country} from '../../model/country';
 })
 export class SearchlineComponent implements OnInit, OnDestroy {
 
-  constructor(private countryService: CountryService, private liveBuildingService: LiveBuildingService) {
-    this.countrySubscription = this.countryService.countryEmitter
-      .subscribe(value =>
-        this.countryService.countryList.forEach(country => this.countryNames.push(country.name))
-      );
-  }
-
-  bsRangeValue: Date [];
-  private countrySubscription: Subscription;
+  private countrySubscription: Subscription[] = [];
 
   countrySelected: string = '';
   citySelected: string = '';
 
   countryNames: string [] = [];
   cityNames: string [] = [];
+  bsRangeValue: Date [] = [];
 
   // dateSelected: string;
   apartmentCountSelected: number = 1;
 
+  loading: boolean = false;
+
+  constructor(private countryService: CountryService, private liveBuildingService: LiveBuildingService) {
+
+    this.countrySubscription.push(this.countryService.countryEmitter
+      .subscribe(value =>
+        this.countryService.countryList.forEach(country => this.countryNames.push(country.name))
+      )
+    );
+
+    this.countrySubscription.push(this.liveBuildingService.liveBuildingFindEmitter
+      .subscribe(value =>
+        this.loading = false
+      )
+    );
+
+  }
+
   buttonOnClick() {
-    this.liveBuildingService.find();
+    this.liveBuildingService.find(this.countrySelected, this.citySelected, this.bsRangeValue);
+    this.loading = true;
   }
 
   setCityNames() {
@@ -41,7 +53,6 @@ export class SearchlineComponent implements OnInit, OnDestroy {
     // countries[0].cities.forEach(city => this.cityNames.push(city.name));
     for (let country of countries) {
       country.cities.forEach(city => this.cityNames.push(city.name));
-      console.log('Country list of cities: ' + country.cities)
     }
 
     return this.cityNames;
@@ -52,9 +63,11 @@ export class SearchlineComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.countrySubscription) {
-      this.countrySubscription.unsubscribe();
-      this.countrySubscription = null;
-    }
+    this.countrySubscription.forEach(value => value.unsubscribe());
   }
+
+  checkEnteredValues(): boolean {
+    return !(this.bsRangeValue.length > 0 && this.countrySelected !== '' && this.citySelected !== '');
+  }
+
 }

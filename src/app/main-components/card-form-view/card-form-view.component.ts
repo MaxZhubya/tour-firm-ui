@@ -3,6 +3,7 @@ import {LiveBuildingService} from '../../services/live-building.service';
 import {LiveBuilding} from '../../model/live-building';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {DetailCardModalComponent} from '../detail-card-modal/detail-card-modal.component';
+import {Data} from '@angular/router';
 
 const path: string = "assets/images/carousel/";
 
@@ -13,7 +14,7 @@ const path: string = "assets/images/carousel/";
 })
 export class CardFormViewComponent implements OnInit {
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private liveBuildingService: LiveBuildingService) { }
 
   bsModalRef: BsModalRef;
   @Input() liveBuilding: LiveBuilding;
@@ -32,7 +33,8 @@ export class CardFormViewComponent implements OnInit {
 
   openModalWithComponent() {
     const initialState = {
-      liveBuilding: this.liveBuilding
+      liveBuilding: this.liveBuilding,
+      dataArray: this.liveBuildingService.dataArray
     };
 
     this.bsModalRef = this.modalService.show(DetailCardModalComponent, {initialState});
