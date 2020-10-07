@@ -1,6 +1,5 @@
 .modal-content {
   width: 810px;
-  /*height: 1200px;*/
   height: auto;
 
   padding-left: auto;
@@ -51,18 +50,14 @@ slide img {
 table {
   width: 600px;
   height: auto;
-  /*background-color: #F0FFFF;*/
   background-color: #FFEBCD;
   font-size: 18px;
 
   margin-right: auto;
   margin-left: auto;
-  /*margin-top: 10%;*/
 
   border: 1px;
-  /*border-color: darkgray;*/
   border-radius: 4px;
-
 }
 
 

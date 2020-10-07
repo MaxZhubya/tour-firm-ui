@@ -1,6 +1,5 @@
 import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import {CountryService} from '../../services/country.service';
-import {ResortCityService} from '../../services/resort-city.service';
 import {LiveBuildingService} from '../../services/live-building.service';
 import {Subscription} from 'rxjs';
 import {Country} from '../../model/country';

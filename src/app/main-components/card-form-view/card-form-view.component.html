@@ -1,6 +1,5 @@
 <div class="result-card">
   <mat-card class="mat-card" fxLayout="row">
-    <!--        <div class="temp" fxLayout="row">-->
     <mat-card-header class="mat-card-header" fxLayout="column">
       <div class="name-rating-number" fxLayout="column">
         <p class="name-rating-number-text">{{liveBuilding.name}}</p>
@@ -16,10 +15,6 @@
 
     <mat-card-content class="mat-card-content" fxLayout="row">
       <div class="detail-data">
-
-<!--        Some troubles with it ._.                                   -->
-<!--        <p> Resort area: <b>{{liveBuilding.resortArea.name}}</b></p>-->
-
         <p> Address: <b>{{liveBuilding.address}}</b></p>
         <p> Distance to beach: <b>{{liveBuilding.distanceToBeach}} m.</b></p>
         <p *ngIf="liveBuilding.ifPoolExist !== false; else elsePoolBlock"> Pool: <b>exist</b></p>
@@ -30,7 +25,6 @@
       <ng-template #elsePoolBlock><p>Pool: <b>doesn't exist</b></p></ng-template>
       <ng-template #elseParkingBlock><p>Parking: <b>doesn't exist</b></p></ng-template>
     </mat-card-content>
-    <!--        </div>-->
 
     <mat-card-actions>
       <div class="cost-and-button" fxLayout="row">

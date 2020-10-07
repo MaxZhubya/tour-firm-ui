@@ -31,7 +31,6 @@ export class BuildingTypeSearchComponent implements OnInit, OnDestroy {
   }
 
   countBuildings() {
-    // console.log('LiveBuildingList length: ' + this.liveBuildingList.length);
     for (let liveBuilding of this.liveBuildingList) {
       if (liveBuilding.type.toString() == BuildingEnum[BuildingEnum.HOTEL].toString()) {
         this.hotels++;
@@ -44,11 +43,6 @@ export class BuildingTypeSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.liveBuildingSubscription = this.liveBuildingService.liveBuildingEmitter
-    //   .subscribe(value =>
-    //     this.liveBuildingService.liveBuildingList.forEach(liveBuilding => this.liveBuildingList.push(liveBuilding))
-    //   );
-    // this.liveBuildingList = this.liveBuildingService.liveBuildingList;
   }
 
   ngOnDestroy(): void {
