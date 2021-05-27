@@ -17,8 +17,8 @@
       <tr *ngFor="let apartment of liveBuilding.apartments">
         <td>{{apartment.number}}</td>
         <td>{{apartment.price}}</td>
-        <td>{{apartment.amountOfBeds}}</td>
-        <td>{{apartment.amountOfRooms}}</td>
+        <td>{{apartment.beds}}</td>
+        <td>{{apartment.rooms}}</td>
         <td *ngIf="apartment.ifBathroomExist !== false, else elseBlock">available</td>
         <td><button type="button" class="btn btn-primary" (click)="orderApartment(apartment)"
           [disabled]="apartment.isOrdered" >Order</button>

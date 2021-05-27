@@ -1,4 +1,4 @@
-import {EntranceType} from '../types/entrance-type';
+// import {EntranceType} from '../types/entrance-type';
 import {ResortCity} from '../resort-city';
 import {Country} from '../country';
 
@@ -8,14 +8,14 @@ export class CountryEdit {
   //  public cityIds: number [];
   public isAbleForEntering: boolean;
   public name: string;
-  public enterTypeIds: number [];
+  // public enterTypeIds: number [];
 
   constructor() {
     this.id = null;
     //  this.cities = [];
     this.isAbleForEntering = null;
     this.name = '';
-    this.enterTypeIds = [];
+    // this.enterTypeIds = [];
   }
 
   public update(country: Country) {
@@ -27,8 +27,8 @@ export class CountryEdit {
     this.isAbleForEntering = country.isAbleForEntering;
     this.name = country.name;
 
-    if (country.enterTypes)
-      country.enterTypes.forEach(value => this.enterTypeIds.push(value.id));
+    // if (country.enterTypes)
+    //   country.enterTypes.forEach(value => this.enterTypeIds.push(value.id));
 
   }
 }

@@ -11,8 +11,8 @@ export class ResortCityEdit {
   public countryId: number;
   //  public areaIds: number [];
   public isAbleForEntering: boolean;
-  public enterTypeIds: number [];
-  public travelingTypeIds: number [];
+  // public enterTypeIds: number [];
+  // public travelingTypeIds: number [];
 
   constructor() {
     this.id = null;
@@ -20,8 +20,8 @@ export class ResortCityEdit {
     this.countryId = null;
     //  this.areaIds = [];
     this.isAbleForEntering = null;
-    this.enterTypeIds = [];
-    this.travelingTypeIds = [];
+    // this.enterTypeIds = [];
+    // this.travelingTypeIds = [];
   }
 
   public update(resortCity: ResortCity) {
@@ -36,10 +36,10 @@ export class ResortCityEdit {
 
     this.isAbleForEntering = resortCity.isAbleForEntering;
 
-    if (resortCity.enterTypes)
-      resortCity.enterTypes.forEach(value => this.enterTypeIds.push(value.id));
-
-    if (resortCity.travelingTypes)
-      resortCity.travelingTypes.forEach(value => this.travelingTypeIds.push(value.id));
+    // if (resortCity.enterTypes)
+    //   resortCity.enterTypes.forEach(value => this.enterTypeIds.push(value.id));
+    //
+    // if (resortCity.travelingTypes)
+    //   resortCity.travelingTypes.forEach(value => this.travelingTypeIds.push(value.id));
   }
 }

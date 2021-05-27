@@ -6,8 +6,8 @@ export class Apartment {
   public building: LiveBuilding;
   public number: string;
   public price: number;
-  public amountOfBeds: number;
-  public amountOfRooms: number;
+  public beds: number;
+  public rooms: number;
   public ifBathroomExist: boolean;
   public isOrdered: boolean;
 
@@ -16,8 +16,8 @@ export class Apartment {
     this.building = null;
     this.number = '';
     this.price = null;
-    this.amountOfBeds = null;
-    this.amountOfRooms = null;
+    this.beds = null;
+    this.rooms = null;
     this.ifBathroomExist = null;
     this.isOrdered = false;
   }
@@ -26,8 +26,8 @@ export class Apartment {
     currentApartment.building = apartment.building;
     currentApartment.number = apartment.number;
     currentApartment.price = apartment.price;
-    currentApartment.amountOfBeds = apartment.amountOfBeds;
-    currentApartment.amountOfRooms = apartment.amountOfRooms;
+    currentApartment.beds = apartment.beds;
+    currentApartment.rooms = apartment.rooms;
     currentApartment.ifBathroomExist = apartment.ifBathroomExist;
   }
 }

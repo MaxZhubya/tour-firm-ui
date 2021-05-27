@@ -6,7 +6,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Country} from '../model/country';
 
-const localUrl = ReferenceService.API_URL + '/country';
+const localUrl = ReferenceService.API_URL; // + '/country';
 
 @Injectable()
 export class CountryService {
@@ -33,7 +33,7 @@ export class CountryService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
+    return this.http.get(localUrl + '/country-list', { headers: headers, responseType: 'json', withCredentials: true });
   }
 
   public loadById(id: number) {
@@ -42,7 +42,7 @@ export class CountryService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(localUrl + '/list/' + id, { headers: headers, responseType: 'json' });
+    return this.http.get(localUrl + '/country-list/' + id, { headers: headers, responseType: 'json' });
   }
 
   public create(countryEdit: CountryEdit) {
@@ -51,7 +51,7 @@ export class CountryService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post(localUrl + '/add', countryEdit, { headers: headers, responseType: 'json' });
+    return this.http.post(localUrl + '/country-add', countryEdit, { headers: headers, responseType: 'json' });
   }
 
   public save(countryEdit: CountryEdit) {
@@ -60,11 +60,11 @@ export class CountryService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.put(localUrl + '/edit', countryEdit, { headers: headers, responseType: 'json' });
+    return this.http.put(localUrl + '/country-edit', countryEdit, { headers: headers, responseType: 'json' });
   }
 
   public delete(id: number) {
-    return this.http.delete(localUrl + '/delete/' + id);
+    return this.http.delete(localUrl + '/country-delete/' + id);
   }
 
 }

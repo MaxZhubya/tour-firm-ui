@@ -6,7 +6,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {Data, Router} from '@angular/router';
 import {LiveBuilding} from '../model/live-building';
 
-const localUrl = ReferenceService.API_URL + '/livebuilding';
+const localUrl = ReferenceService.API_URL; // + '/livebuilding';
 
 @Injectable()
 export class LiveBuildingService {
@@ -54,7 +54,7 @@ export class LiveBuildingService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
+    return this.http.get(localUrl + '/livebuilding-list', { headers: headers, responseType: 'json', withCredentials: true });
   }
 
   public loadById(id: number) {
@@ -63,7 +63,7 @@ export class LiveBuildingService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(localUrl + '/list/' + id, { headers: headers, responseType: 'json' });
+    return this.http.get(localUrl + '/livebuilding-list/' + id, { headers: headers, responseType: 'json' });
   }
 
   public filter(country: String, city: String, dataArray: Data[]) {
@@ -85,7 +85,7 @@ export class LiveBuildingService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post(localUrl + '/add', liveBuildingEdit, { headers: headers, responseType: 'json' });
+    return this.http.post(localUrl + '/livebuilding-add', liveBuildingEdit, { headers: headers, responseType: 'json' });
   }
 
   public save(liveBuildingEdit: LiveBuildingEdit) {
@@ -94,11 +94,11 @@ export class LiveBuildingService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.put(localUrl + '/edit', liveBuildingEdit, { headers: headers, responseType: 'json' });
+    return this.http.put(localUrl + '/livebuilding-edit', liveBuildingEdit, { headers: headers, responseType: 'json' });
   }
 
   public delete(id: number) {
-    return this.http.delete(localUrl + '/delete/' + id);
+    return this.http.delete(localUrl + '/livebuilding-delete/' + id);
   }
 
 }

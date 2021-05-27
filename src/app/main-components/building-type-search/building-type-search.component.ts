@@ -31,10 +31,20 @@ export class BuildingTypeSearchComponent implements OnInit, OnDestroy {
   }
 
   countBuildings() {
+    // for (let liveBuilding of this.liveBuildingList) {
+    //   if (liveBuilding.type.toString() == BuildingEnum[BuildingEnum.HOTEL].toString()) {
+    //     this.hotels++;
+    //   } else if (liveBuilding.type.toString() == BuildingEnum[BuildingEnum.COTTAGE].toString()) {
+    //     this.cottages++;
+    //   } else {
+    //     this.villas++;
+    //   }
+    // }
+
     for (let liveBuilding of this.liveBuildingList) {
-      if (liveBuilding.type.toString() == BuildingEnum[BuildingEnum.HOTEL].toString()) {
+      if (liveBuilding.type == 0) {
         this.hotels++;
-      } else if (liveBuilding.type.toString() == BuildingEnum[BuildingEnum.COTTAGE].toString()) {
+      } else if (liveBuilding.type == 2) {
         this.cottages++;
       } else {
         this.villas++;

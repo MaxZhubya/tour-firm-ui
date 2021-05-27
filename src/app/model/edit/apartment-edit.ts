@@ -28,8 +28,8 @@ export class ApartmentEdit {
 
     this.number = apartment.number;
     this.price = apartment.price;
-    this.amountOfBeds = apartment.amountOfBeds;
-    this.amountOfRooms = apartment.amountOfRooms;
+    this.amountOfBeds = apartment.beds;
+    this.amountOfRooms = apartment.rooms;
     this.ifBathroomExist = apartment.ifBathroomExist;
   }
 }

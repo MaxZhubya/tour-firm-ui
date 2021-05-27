@@ -1,5 +1,5 @@
 import {ResortCity} from './resort-city';
-import {EntranceType} from './types/entrance-type';
+// import {EntranceType} from './types/entrance-type';
 
 export class Country {
 
@@ -7,14 +7,14 @@ export class Country {
   public cities: Array<ResortCity>;
   public isAbleForEntering: boolean;
   public name: string;
-  public enterTypes: Array<EntranceType>;
+  // public enterTypes: Array<EntranceType>;
 
   constructor() {
     this.id = null;
     this.cities = new Array<ResortCity>();
     this.isAbleForEntering = null;
     this.name = '';
-    this.enterTypes = new Array<EntranceType>();
+    // this.enterTypes = new Array<EntranceType>();
   }
 
   public static update(currentCountry: Country, country: Country) {
@@ -25,8 +25,8 @@ export class Country {
     currentCountry.isAbleForEntering = country.isAbleForEntering;
     currentCountry.name = country.name;
 
-    currentCountry.enterTypes = country.enterTypes;
-    if (currentCountry.enterTypes !== undefined && currentCountry.enterTypes !== null)
-      currentCountry.enterTypes.sort((b, a) => b.id - a.id);
+    // currentCountry.enterTypes = country.enterTypes;
+    // if (currentCountry.enterTypes !== undefined && currentCountry.enterTypes !== null)
+    //   currentCountry.enterTypes.sort((b, a) => b.id - a.id);
   }
 }

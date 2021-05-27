@@ -35,7 +35,7 @@ export class ApartmentService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(localUrl + '/list', { headers: headers, responseType: 'json' });
+    return this.http.get(localUrl + '/apartment-list', { headers: headers, responseType: 'json' });
   }
 
   public loadById(id: number) {
@@ -44,7 +44,7 @@ export class ApartmentService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(localUrl + '/list/' + id, { headers: headers, responseType: 'json' });
+    return this.http.get(localUrl + '/apartment-list/' + id, { headers: headers, responseType: 'json' });
   }
 
   public create(apartmentEdit: ApartmentEdit) {
@@ -53,7 +53,7 @@ export class ApartmentService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post(localUrl + '/add', apartmentEdit, { headers: headers, responseType: 'json' });
+    return this.http.post(localUrl + '/apartment-add', apartmentEdit, { headers: headers, responseType: 'json' });
   }
 
   public save(apartmentEdit: ApartmentEdit) {
@@ -62,11 +62,11 @@ export class ApartmentService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.put(localUrl + '/edit', apartmentEdit, { headers: headers, responseType: 'json' });
+    return this.http.put(localUrl + '/apartment-edit', apartmentEdit, { headers: headers, responseType: 'json' });
   }
 
   public delete(id: number) {
-    return this.http.delete(localUrl + '/delete/' + id);
+    return this.http.delete(localUrl + '/apartment-delete/' + id);
   }
 
   private order(apartment: Apartment, dataArray: Data[]) {
@@ -79,7 +79,7 @@ export class ApartmentService {
       'id': null, 'apartmentId': apartment.id, 'dateIn': dataArray[0], 'dateOut': dataArray[1]
     });
 
-    return this.http.post(localUrlForApartmentOrder + '/add', body, { headers: headers, responseType: 'json' });
+    return this.http.post(localUrlForApartmentOrder + '/reservedapartment-add', body, { headers: headers, responseType: 'json' });
   }
 
 }
